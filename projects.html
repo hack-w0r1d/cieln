@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BKD9T5BP9D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-BKD9T5BP9D');
+</script>
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3081263921605764"
+crossorigin="anonymous"></script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects | Ciel'N</title>
+<meta name="description" content="Ciel'Nがこれまでに制作した配信アプリ向けツール・情報サイトの一覧です。制作の背景や技術的な工夫を紹介しています。">
+<meta property="og:title" content="Projects | Ciel'N">
+<meta property="og:description" content="Ciel'Nがこれまでに制作した配信アプリ向けツール・情報サイトの一覧です。制作の背景や技術的な工夫を紹介しています。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://cieln.com/projects.html">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav__inner">
+    <a class="nav__logo" href="index.html">Ciel'N</a>
+    <nav class="nav__main" aria-label="メインナビゲーション">
+      <a href="profile.html">Profile</a>
+      <a href="projects.html">Projects</a>
+    </nav>
+    <nav class="nav__ext" aria-label="外部リンク">
+      <a href="https://github.com/hack-w0r1d" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://x.com/yu_cielkun" target="_blank" rel="noopener">X</a>
+      <a href="https://www.mirrativ.com/deep_link_preview?link=https%3A%2F%2Fws9f.adj.st%2Fuser%2F1740184%3Fadj_deep_link%3Dmirr%253A%252F%252F%252Fuser%252F1740184%253Fwhere%253Dprofile%26adj_fallback%3Dhttps%253A%252F%252Fwww.mirrativ.com%252Fuser%252F1740184%253Fwhere%253Dprofile%26adj_og_description%3DSweet%2Bdream%252C%2Bw0r1d%26adj_og_image%3Dhttps%253A%252F%252Fcdn.mirrativ.com%252Fmirrorman-prod%252Fimage%252Fprofile_image%252F3e6b91653a891d519828bbe897a68c832d57ffc4077de42a47c8c5a4ac16ef4f_m.jpeg%253F1788989863%26adj_og_title%3D%25E3%2581%2597%25E3%2581%2588%25E3%2582%258B%25E3%2582%2593%25E3%2580%2582%26adj_redirect_macos%3Dhttps%253A%252F%252Fwww.mirrativ.com%252Fuser%252F1740184%253Fwhere%253Dprofile%26adj_t%3D1pkihi8s_1pyfvurh%26where%3Dprofile" target="_blank" rel="noopener">Mirrativ</a>
+    </nav>
+    <button class="nav__toggle" aria-label="メニューを開く" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<section class="page-head">
+  <div class="section-inner">
+    <h1 class="page-head__title">Projects</h1>
+    <p class="page-head__lead">
+      これまでに制作した配信アプリ向けツールや情報サイトです。制作の背景や技術的な工夫もあわせて紹介しています。
+    </p>
+  </div>
+</section>
+
+<section class="projects">
+  <div class="section-inner">
+    <div class="project-list">
+
+      <article class="project-entry">
+        <h2 class="project-entry__title">LiveTelop Maker</h2>
+        <p class="project-entry__tagline">iOS向け配信テロップ作成ツール（Canvas + Picture-in-Picture）</p>
+        <p class="project-entry__body">
+          配信画面に重ねて表示できる演出テロップを、iPhone一台で作成できるツールです。CanvasとPicture-in-Pictureを組み合わせ、Glow・Fireなどのテキストエフェクトや、Stars・Sparks・Stage Lightsといった背景エフェクトを実装しています。当初は1つのscript.jsに機能が集中していましたが、state / premium / storage / telop / mainの5つのESモジュールに分割し、循環参照を避けるためにコールバックパターンと共有のstateオブジェクトを使う設計にリファクタリングしました。速度スライダーには区分線形補間を使い、なめらかに速度を変化させられるようにしています。
+        </p>
+        <div class="project-entry__tags">
+          <span class="project-entry__tag">Canvas API</span>
+          <span class="project-entry__tag">Picture-in-Picture</span>
+          <span class="project-entry__tag">ESモジュール設計</span>
+        </div>
+        <a class="text-link" href="https://livetelop.cieln.com/" target="_blank" rel="noopener">サイトを見る</a>
+      </article>
+
+      <article class="project-entry">
+        <h2 class="project-entry__title">Mirrativで使える便利ツール集</h2>
+        <p class="project-entry__tagline">Mirrativで使える自作・他制作者のツールをまとめたリンク集</p>
+        <p class="project-entry__body">
+          これまでに制作したツールに加えて、他の方が制作された便利なツールもまとめて紹介するポータルサイトです。Mirrativのミッション「わかりあう願いをつなごう」にちなんで「願い」「繋ぐ」をコンセプトにしています。掲載しているツールは、非公開APIや通信解析などを使わず、公開情報のみをもとに作られたものであることを確認したうえで掲載しています。
+        </p>
+        <div class="project-entry__tags">
+          <span class="project-entry__tag">情報設計</span>
+          <span class="project-entry__tag">リンク集</span>
+        </div>
+        <a class="text-link" href="https://mirrativ-tools.cieln.com/" target="_blank" rel="noopener">サイトを見る</a>
+      </article>
+
+      <article class="project-entry">
+        <h2 class="project-entry__title">スラモン攻略メモ</h2>
+        <p class="project-entry__tagline">Mirrativの新作ライブゲーム「スラモン」の攻略メモを公開する情報サイト</p>
+        <p class="project-entry__body">
+          Mirrativで新しく始まったライブゲーム「スラモン」について、自分用に集めていた攻略情報を一般公開するために制作しました。イベントの選択肢とその報酬、アイテムやスキルの効果などを、VSCode風のキーワード検索機能（モバイル対応）ですぐに調べられるようにしています。モンスターデータとスキルデータを別ファイルで管理し、1体のモンスターが複数のスキルを持ち、1つのスキルを複数のモンスターが習得できるという多対多の関係をシンプルなJSファイル構成で表現しました。バトルスキルの一覧は「物理攻撃」「魔法攻撃」「バフ」「デバフ」「状態異常」「回復・カウンター」など種類ごとにグループ化し、アコーディオンで開閉できるようにしています。現在も最も活発に更新しているプロジェクトです。
+        </p>
+        <div class="project-entry__tags">
+          <span class="project-entry__tag">Vanilla JS</span>
+          <span class="project-entry__tag">データ設計</span>
+          <span class="project-entry__tag">キーワード検索</span>
+        </div>
+        <a class="text-link" href="https://slamon-info.cieln.com/" target="_blank" rel="noopener">サイトを見る</a>
+      </article>
+
+      <article class="project-entry">
+        <h2 class="project-entry__title">ヤミクマ襲来</h2>
+        <p class="project-entry__tagline">Mirrativのライブゲーム「スラコロ」に出現する「ヤミクマ」の憑依判別ガイド</p>
+        <p class="project-entry__body">
+          モンスターに「ヤミクマ」が憑依すると、通常状態と見比べてどこかに違和感のある異変が現れます。このサイトでは、通常状態と異変状態の画像を並べて比較しながら、その異変ポイントを判別できるようにまとめています。モーダルでの左右ナビゲーションやスワイプ操作（Pointer Events API）、三ペインのカルーセル構造によるドラッグ追従などをバニラJSで実装しました。
+        </p>
+        <div class="project-entry__tags">
+          <span class="project-entry__tag">Pointer Events API</span>
+          <span class="project-entry__tag">SPA構成</span>
+          <span class="project-entry__tag">データファイル分割</span>
+        </div>
+        <a class="text-link" href="https://yamikuma.cieln.com/" target="_blank" rel="noopener">サイトを見る</a>
+      </article>
+
+      <article class="project-entry">
+        <h2 class="project-entry__title">ルーレットギフト期待値計算ツール</h2>
+        <p class="project-entry__tagline">Mirrativのランキングイベント向け、ルーレットギフトの期待値計算ツール</p>
+        <p class="project-entry__body">
+          その日に進んだマスの合計を競うランキングイベントに向けて、ギフト数と進むマス数の期待値、目標マスに必要なギフト数の目安を計算できるツールです。有償コインは期待値の高いギフトから優先的に使い切る設計にし、期間限定の「SUPER FEVER」開催時は計算式を切り替えられるようにするなど、実際のイベント運用に合わせて機能を拡張してきました。
+        </p>
+        <div class="project-entry__tags">
+          <span class="project-entry__tag">期待値計算ロジック</span>
+          <span class="project-entry__tag">タブUI</span>
+        </div>
+        <a class="text-link" href="https://roulette-calc.cieln.com/" target="_blank" rel="noopener">サイトを見る</a>
+      </article>
+
+      <article class="project-entry">
+        <h2 class="project-entry__title">スラコロ専用ギフト期待値計算ツール</h2>
+        <p class="project-entry__tagline">Mirrativのライブゲーム「スラコロ」専用ギフトの期待値計算ツール</p>
+        <p class="project-entry__body">
+          「普通の宝箱」「豪華な宝箱」などスラコロ専用ギフトを贈ったときの、GP・オッズ・エモモの宝玉・獲得メダルなどの期待値を計算できるツールです。「贈る個数から計算」「使用コインから計算」「目標GPから計算」「目標オッズから計算」「目標ぶる太数から計算」「連勝ボーナス」の6タブで構成し、目標値に対して10連ギフトを優先消化する組み合わせを自動で算出します。デザインは舞台のカーテンとレッドカーペットをイメージした配色にまとめました。
+        </p>
+        <div class="project-entry__tags">
+          <span class="project-entry__tag">期待値計算ロジック</span>
+          <span class="project-entry__tag">タブUI</span>
+        </div>
+        <a class="text-link" href="https://slakolo-calc.cieln.com/" target="_blank" rel="noopener">サイトを見る</a>
+      </article>
+
+      <article class="project-entry">
+        <h2 class="project-entry__title">チアランク早見表</h2>
+        <p class="project-entry__tagline">Mirrativの「チア機能」に関する一覧表・検索ツール</p>
+        <p class="project-entry__body">
+          チアレベルとチアランクという2つの仕組みで構成される「チア機能」について、達成条件をすぐに確認できる一覧・検索ツールです。公式アプリの配色やグラデーションを再現し、条件A・B・Cを単一選択にする、横スクロールを廃止するなど、実際の使いやすさを検証しながらUIを調整しました。
+        </p>
+        <div class="project-entry__tags">
+          <span class="project-entry__tag">検索UI</span>
+          <span class="project-entry__tag">データ表示</span>
+        </div>
+        <a class="text-link" href="https://cheer-rank.cieln.com/" target="_blank" rel="noopener">サイトを見る</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <nav class="site-footer__legal" aria-label="サイト情報">
+      <a href="privacy.html">プライバシーポリシー</a>
+      <a href="terms.html">利用規約</a>
+    </nav>
+    <p class="site-footer__credit">© <span id="year"></span> Ciel'N</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
