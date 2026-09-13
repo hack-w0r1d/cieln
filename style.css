@@ -1,611 +1,680 @@
 /* ==========================================================================
-   Ciel'N Portfolio — Design Tokens
-   コンセプト: 「美しく幻想的で儚い魔法」
-   ========================================================================== */
-   :root {
-    /* Color */
-    --void: #0b0713;
-    --void-deep: #050308;
-    --dusk: #1c1430;
-    --dusk-soft: #251a3d;
-    --amethyst: #8b5ce0;
-    --amethyst-soft: #b79bf0;
-    --emerald: #14b787;
-    --emerald-soft: #5fe0b8;
-    --bloom: #f06fb0;
-    --crystal: #ece7f8;
-    --crystal-dim: #a99fc4;
+    Ciel'N Portfolio — Design Tokens
+    コンセプト: 「美しく幻想的で儚い魔法」
+    ========================================================================== */
+  :root {
+  /* Color */
+  --void: #0b0713;
+  --void-deep: #050308;
+  --dusk: #1c1430;
+  --dusk-soft: #251a3d;
+  --amethyst: #8b5ce0;
+  --amethyst-soft: #b79bf0;
+  --emerald: #14b787;
+  --emerald-soft: #5fe0b8;
+  --bloom: #f06fb0;
+  --crystal: #ece7f8;
+  --crystal-dim: #a99fc4;
 
-    /* Type */
-    --font-display-ja: "Shippori Mincho", serif;
-    --font-display-en: "Cormorant Garamond", serif;
-    --font-body: "Zen Kaku Gothic New", "Hiragino Sans", "Hiragino Kaku Gothic ProN", sans-serif;
+  /* Type */
+  --font-display-ja: "Shippori Mincho", serif;
+  --font-display-en: "Cormorant Garamond", serif;
+  --font-body: "Zen Kaku Gothic New", "Hiragino Sans", "Hiragino Kaku Gothic ProN", sans-serif;
 
-    /* Layout */
-    --max-width: 1080px;
-    --edge: clamp(20px, 5vw, 64px);
+  /* Layout */
+  --max-width: 1080px;
+  --edge: clamp(20px, 5vw, 64px);
+  --nav-height: 65px;
 
-    /* Motion */
-    --ease-veil: cubic-bezier(0.22, 1, 0.36, 1);
-  }
+  /* Motion */
+  --ease-veil: cubic-bezier(0.22, 1, 0.36, 1);
+}
 
-  /* ==========================================================================
-     Base
-     ========================================================================== */
-  *, *::before, *::after { box-sizing: border-box; }
+/* ==========================================================================
+    Base
+    ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
 
-  html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; }
 
-  body {
-    margin: 0;
-    background: var(--void);
-    color: var(--crystal);
-    font-family: var(--font-body);
-    font-size: 16px;
-    line-height: 1.8;
-    -webkit-font-smoothing: antialiased;
-  }
+body {
+  margin: 0;
+  background: var(--void);
+  color: var(--crystal);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
 
-  img { max-width: 100%; display: block; }
-  a { color: inherit; text-decoration: none; }
-  ul { list-style: none; margin: 0; padding: 0; }
-  h1, h2, h3 { margin: 0; font-weight: 500; }
-  p { margin: 0; }
-  button { font: inherit; color: inherit; }
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; margin: 0; padding: 0; }
+h1, h2, h3 { margin: 0; font-weight: 500; }
+p { margin: 0; }
+button { font: inherit; color: inherit; }
 
-  :focus-visible {
-    outline: 2px solid var(--emerald-soft);
-    outline-offset: 3px;
-  }
+:focus-visible {
+  outline: 2px solid var(--emerald-soft);
+  outline-offset: 3px;
+}
 
-  .section-inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 100px var(--edge);
-  }
+.section-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 100px var(--edge);
+}
 
-  .prose {
-    max-width: 38em;
-  }
+.prose {
+  max-width: 38em;
+}
 
-  h2 {
-    font-family: var(--font-display-ja);
-    font-size: clamp(1.6rem, 3vw, 2.1rem);
-    margin-bottom: 24px;
-    letter-spacing: .02em;
-  }
+h2 {
+  font-family: var(--font-display-ja);
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  margin-bottom: 24px;
+  letter-spacing: .02em;
+}
 
-  .text-link {
-    display: inline-block;
-    margin-top: 10px;
-    font-size: .92rem;
-    color: var(--emerald-soft);
-    border-bottom: 1px solid rgba(95, 224, 184, .35);
-    padding-bottom: 2px;
-    transition: border-color .2s, color .2s;
-  }
-  .text-link:hover { color: var(--crystal); border-color: var(--crystal); }
+.text-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: .92rem;
+  color: var(--emerald-soft);
+  border-bottom: 1px solid rgba(95, 224, 184, .35);
+  padding-bottom: 2px;
+  transition: border-color .2s, color .2s;
+}
+.text-link:hover { color: var(--crystal); border-color: var(--crystal); }
 
-  /* ==========================================================================
-     Nav
-     ========================================================================== */
-  .nav {
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    background: rgba(11, 7, 19, .72);
-    backdrop-filter: blur(10px);
+/* ==========================================================================
+    Nav
+    ========================================================================== */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(11, 7, 19, .72);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(139, 92, 224, .18);
+}
+
+.nav__inner {
+  position: relative;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 18px var(--edge);
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+.nav__logo {
+  font-family: var(--font-display-en);
+  font-size: 1.3rem;
+  letter-spacing: .03em;
+  color: var(--crystal);
+  margin-right: auto;
+}
+
+.nav__main, .nav__ext {
+  display: flex;
+  gap: 26px;
+  font-size: .92rem;
+}
+
+.nav__main a, .nav__ext a {
+  position: relative;
+  padding: 4px 0;
+  color: var(--crystal-dim);
+  transition: color .2s;
+}
+.nav__main a:hover, .nav__ext a:hover { color: var(--emerald-soft); }
+
+.nav__main a::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 0; height: 1px;
+  background: var(--emerald-soft);
+  transition: width .25s var(--ease-veil);
+}
+.nav__main a:hover::after { width: 100%; }
+
+.nav__ext {
+  padding-left: 26px;
+  border-left: 1px solid rgba(236, 231, 248, .15);
+}
+
+.nav__toggle {
+  display: none;
+  background: none;
+  border: 0;
+  padding: 8px;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+}
+.nav__toggle span { width: 22px; height: 2px; background: var(--crystal); display: block; }
+
+@media (max-width: 760px) {
+  .nav__main, .nav__ext { display: none; }
+  .nav__toggle { display: inline-flex; }
+
+  .nav.is-open .nav__main,
+  .nav.is-open .nav__ext {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    padding: 24px var(--edge) 28px;
+    background: var(--void-deep);
     border-bottom: 1px solid rgba(139, 92, 224, .18);
   }
+  .nav.is-open .nav__ext {
+    border-left: 0;
+    border-top: 1px solid rgba(236, 231, 248, .12);
+    margin-top: -8px;
+    padding-top: 18px;
+  }
+}
 
-  .nav__inner {
-    position: relative;
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 18px var(--edge);
-    display: flex;
-    align-items: center;
-    gap: 36px;
-  }
+/* ==========================================================================
+    Hero — サイト内で唯一の演出的な動きを持たせる場所
+    ========================================================================== */
+.hero {
+  position: relative;
+  min-height: calc(100vh - var(--nav-height, 65px));
+  min-height: calc(100dvh - var(--nav-height, 65px));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 80px var(--edge);
+  background:
+    radial-gradient(60% 50% at 30% 20%, rgba(139, 92, 224, .35), transparent 60%),
+    radial-gradient(55% 45% at 75% 70%, rgba(20, 183, 135, .28), transparent 60%),
+    radial-gradient(40% 35% at 85% 15%, rgba(240, 111, 176, .18), transparent 65%),
+    var(--void);
+  background-size: 140% 140%, 140% 140%, 140% 140%, auto;
+  animation: aurora-drift 26s ease-in-out infinite;
+}
 
-  .nav__logo {
-    font-family: var(--font-display-en);
-    font-size: 1.3rem;
-    letter-spacing: .03em;
-    color: var(--crystal);
-    margin-right: auto;
-  }
+@keyframes aurora-drift {
+  0%, 100% { background-position: 0% 0%, 100% 100%, 100% 0%, 0 0; }
+  50% { background-position: 20% 15%, 80% 85%, 70% 20%, 0 0; }
+}
 
-  .nav__main, .nav__ext {
-    display: flex;
-    gap: 26px;
-    font-size: .92rem;
-  }
+.hero__veil { position: absolute; inset: 0; pointer-events: none; }
 
-  .nav__main a, .nav__ext a {
-    position: relative;
-    padding: 4px 0;
-    color: var(--crystal-dim);
-    transition: color .2s;
-  }
-  .nav__main a:hover, .nav__ext a:hover { color: var(--emerald-soft); }
+.mote {
+  position: absolute;
+  left: var(--x); top: var(--y);
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: var(--crystal);
+  box-shadow: 0 0 6px 1px var(--crystal);
+  opacity: 0;
+  animation:
+    twinkle 6s ease-in-out var(--d) infinite,
+    drift 14s ease-in-out var(--d) infinite;
+}
 
-  .nav__main a::after {
-    content: "";
-    position: absolute;
-    left: 0; bottom: 0;
-    width: 0; height: 1px;
-    background: var(--emerald-soft);
-    transition: width .25s var(--ease-veil);
-  }
-  .nav__main a:hover::after { width: 100%; }
+@keyframes twinkle {
+  0%, 100% { opacity: 0; }
+  50% { opacity: var(--s, .6); }
+}
+@keyframes drift {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-40px); }
+}
 
-  .nav__ext {
-    padding-left: 26px;
-    border-left: 1px solid rgba(236, 231, 248, .15);
-  }
+.hero__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 620px;
+  text-align: center;
+}
 
-  .nav__toggle {
-    display: none;
-    background: none;
-    border: 0;
-    padding: 8px;
-    cursor: pointer;
-    flex-direction: column;
-    gap: 5px;
-  }
-  .nav__toggle span { width: 22px; height: 2px; background: var(--crystal); display: block; }
+.hero__kicker {
+  font-size: .95rem;
+  color: var(--crystal-dim);
+  margin-bottom: 18px;
+  letter-spacing: .04em;
+}
 
-  @media (max-width: 760px) {
-    .nav__main, .nav__ext { display: none; }
-    .nav__toggle { display: inline-flex; }
+.hero__title {
+  font-family: var(--font-display-en);
+  font-size: clamp(3.2rem, 9vw, 6rem);
+  font-weight: 600;
+  letter-spacing: .02em;
+  background: linear-gradient(100deg, var(--crystal) 30%, var(--amethyst-soft) 45%, var(--bloom) 52%, var(--crystal) 68%);
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer-once 2.6s var(--ease-veil) .3s 1 both;
+}
 
-    .nav.is-open .nav__main,
-    .nav.is-open .nav__ext {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      position: absolute;
-      top: 100%; left: 0; right: 0;
-      padding: 24px var(--edge) 28px;
-      background: var(--void-deep);
-      border-bottom: 1px solid rgba(139, 92, 224, .18);
-    }
-    .nav.is-open .nav__ext {
-      border-left: 0;
-      border-top: 1px solid rgba(236, 231, 248, .12);
-      margin-top: -8px;
-      padding-top: 18px;
-    }
-  }
+@keyframes shimmer-once {
+  0% { background-position: 100% 0; }
+  100% { background-position: 0% 0; }
+}
 
-  /* ==========================================================================
-     Hero — サイト内で唯一の演出的な動きを持たせる場所
-     ========================================================================== */
-  .hero {
-    position: relative;
-    min-height: calc(100vh - 65px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    padding: 80px var(--edge);
-    background:
-      radial-gradient(60% 50% at 30% 20%, rgba(139, 92, 224, .35), transparent 60%),
-      radial-gradient(55% 45% at 75% 70%, rgba(20, 183, 135, .28), transparent 60%),
-      radial-gradient(40% 35% at 85% 15%, rgba(240, 111, 176, .18), transparent 65%),
-      var(--void);
-    background-size: 140% 140%, 140% 140%, 140% 140%, auto;
-    animation: aurora-drift 26s ease-in-out infinite;
-  }
+.hero__tagline {
+  margin-top: 26px;
+  font-size: 1.05rem;
+  line-height: 2;
+  color: var(--crystal);
+}
+.hero__tagline-group { margin: 0; }
+.hero__tagline-group + .hero__tagline-group { margin-top: .5em; }
+.hero__tagline-line { display: block; }
 
-  @keyframes aurora-drift {
-    0%, 100% { background-position: 0% 0%, 100% 100%, 100% 0%, 0 0; }
-    50% { background-position: 20% 15%, 80% 85%, 70% 20%, 0 0; }
-  }
+.hero__char {
+  display: inline-block;
+  opacity: 0;
+  animation: char-rise .55s var(--ease-veil) forwards;
+}
+@keyframes char-rise {
+  from { opacity: 0; transform: translateY(.35em); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-  .hero__veil { position: absolute; inset: 0; pointer-events: none; }
+.hero__cta {
+  margin-top: 44px;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.hero__cta-btn {
+  opacity: 0;
+  animation: btn-rise .6s var(--ease-veil) forwards;
+}
+@keyframes btn-rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-  .mote {
-    position: absolute;
-    left: var(--x); top: var(--y);
-    width: 3px; height: 3px;
-    border-radius: 50%;
-    background: var(--crystal);
-    box-shadow: 0 0 6px 1px var(--crystal);
-    opacity: 0;
-    animation:
-      twinkle 6s ease-in-out var(--d) infinite,
-      drift 14s ease-in-out var(--d) infinite;
-  }
+/* ==========================================================================
+    Buttons
+    ========================================================================== */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 30px;
+  font-size: .95rem;
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+  transition: transform .25s var(--ease-veil), box-shadow .25s var(--ease-veil), background .25s;
+}
 
-  @keyframes twinkle {
-    0%, 100% { opacity: 0; }
-    50% { opacity: var(--s, .6); }
-  }
-  @keyframes drift {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-40px); }
-  }
+.btn--primary {
+  background: linear-gradient(135deg, var(--amethyst), #6a3bc4);
+  color: #fff;
+  box-shadow: 0 0 0 1px rgba(139, 92, 224, .4), 0 8px 24px -8px rgba(139, 92, 224, .7);
+}
+.btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 1px rgba(139, 92, 224, .6), 0 14px 30px -10px rgba(139, 92, 224, .9);
+}
 
-  .hero__inner {
-    position: relative;
-    z-index: 1;
-    max-width: 620px;
-    text-align: center;
-  }
+.btn--ghost {
+  background: transparent;
+  color: var(--emerald-soft);
+  box-shadow: inset 0 0 0 1px rgba(95, 224, 184, .5);
+}
+.btn--ghost:hover {
+  box-shadow: inset 0 0 0 1px var(--emerald-soft);
+  background: rgba(95, 224, 184, .08);
+}
 
-  .hero__kicker {
-    font-size: .95rem;
-    color: var(--crystal-dim);
-    margin-bottom: 18px;
-    letter-spacing: .04em;
-  }
+.btn__ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.btn__ring polygon {
+  fill: none;
+  stroke: var(--emerald-soft);
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 410;
+  stroke-dashoffset: 410;
+  transition: stroke-dashoffset .6s var(--ease-veil);
+}
+.btn--ghost:hover .btn__ring polygon,
+.btn--ghost:focus-visible .btn__ring polygon {
+  stroke-dashoffset: 0;
+}
 
-  .hero__title {
-    font-family: var(--font-display-en);
-    font-size: clamp(3.2rem, 9vw, 6rem);
-    font-weight: 600;
-    letter-spacing: .02em;
-    background: linear-gradient(100deg, var(--crystal) 30%, var(--amethyst-soft) 45%, var(--bloom) 52%, var(--crystal) 68%);
-    background-size: 260% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: shimmer-once 2.6s var(--ease-veil) .3s 1 both;
-  }
+/* ==========================================================================
+    Scroll reveal
+    ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .7s var(--ease-veil), transform .7s var(--ease-veil);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-  @keyframes shimmer-once {
-    0% { background-position: 100% 0; }
-    100% { background-position: 0% 0; }
-  }
+/* ==========================================================================
+    About teaser
+    ========================================================================== */
+.about-teaser p { color: var(--crystal); }
 
-  .hero__tagline {
-    margin-top: 26px;
-    font-size: 1.05rem;
-    line-height: 2;
-    color: var(--crystal);
-  }
+/* ==========================================================================
+    Featured projects
+    ========================================================================== */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 28px;
+  margin-top: 40px;
+  margin-bottom: 36px;
+}
 
-  .hero__cta {
-    margin-top: 44px;
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
+.card {
+  position: relative;
+  padding: 32px 28px;
+  background: linear-gradient(155deg, var(--dusk), var(--dusk-soft));
+  clip-path: polygon(18px 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%, 0 18px);
+  box-shadow: 0 0 0 1px rgba(139, 92, 224, .12);
+  transition: box-shadow .3s var(--ease-veil), transform .3s var(--ease-veil);
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 0 1px rgba(139, 92, 224, .35), 0 18px 40px -20px rgba(139, 92, 224, .6);
+}
 
-  /* ==========================================================================
-     Buttons
-     ========================================================================== */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    padding: 14px 30px;
-    font-size: .95rem;
-    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
-    transition: transform .25s var(--ease-veil), box-shadow .25s var(--ease-veil), background .25s;
-  }
+.card__mark {
+  display: inline-block;
+  width: 30px; height: 30px;
+  margin-bottom: 18px;
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+}
+.card:nth-child(1) .card__mark { background: linear-gradient(135deg, var(--amethyst), var(--amethyst-soft)); }
+.card:nth-child(2) .card__mark { background: linear-gradient(135deg, var(--emerald), var(--emerald-soft)); }
+.card:nth-child(3) .card__mark { background: linear-gradient(135deg, var(--bloom), var(--amethyst-soft)); }
+.card:nth-child(4) .card__mark { background: linear-gradient(135deg, var(--emerald-soft), var(--bloom)); }
 
-  .btn--primary {
-    background: linear-gradient(135deg, var(--amethyst), #6a3bc4);
-    color: #fff;
-    box-shadow: 0 0 0 1px rgba(139, 92, 224, .4), 0 8px 24px -8px rgba(139, 92, 224, .7);
-  }
-  .btn--primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 0 1px rgba(139, 92, 224, .6), 0 14px 30px -10px rgba(139, 92, 224, .9);
-  }
+.card h3 {
+  font-family: var(--font-display-ja);
+  font-size: 1.15rem;
+  margin-bottom: 12px;
+}
+.card p {
+  font-size: .92rem;
+  color: var(--crystal-dim);
+  line-height: 1.9;
+  margin-bottom: 18px;
+}
 
-  .btn--ghost {
-    background: transparent;
-    color: var(--emerald-soft);
-    box-shadow: inset 0 0 0 1px rgba(95, 224, 184, .5);
-  }
-  .btn--ghost:hover {
-    box-shadow: inset 0 0 0 1px var(--emerald-soft);
-    background: rgba(95, 224, 184, .08);
-  }
+/* ==========================================================================
+    Links
+    ========================================================================== */
+.link-pills { display: flex; gap: 16px; flex-wrap: wrap; }
 
-  /* ==========================================================================
-     About teaser
-     ========================================================================== */
-  .about-teaser p { color: var(--crystal); }
+.pill {
+  padding: 12px 26px;
+  font-size: .9rem;
+  border: 1px solid rgba(139, 92, 224, .35);
+  border-radius: 999px;
+  color: var(--crystal);
+  transition: border-color .2s, background .2s, transform .2s;
+}
+.pill:hover {
+  border-color: var(--emerald-soft);
+  background: rgba(95, 224, 184, .08);
+  transform: translateY(-2px);
+}
 
-  /* ==========================================================================
-     Featured projects
-     ========================================================================== */
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 28px;
-    margin-top: 40px;
-    margin-bottom: 36px;
-  }
+/* ==========================================================================
+    Page head（サブページ用の落ち着いた見出しエリア／シャイン演出なし）
+    ========================================================================== */
+.page-head {
+  position: relative;
+  padding: 140px var(--edge) 56px;
+  background:
+    radial-gradient(50% 60% at 20% 0%, rgba(139, 92, 224, .16), transparent 65%),
+    radial-gradient(45% 55% at 90% 10%, rgba(20, 183, 135, .12), transparent 65%),
+    var(--void);
+  border-bottom: 1px solid rgba(139, 92, 224, .15);
+}
 
-  .card {
-    position: relative;
-    padding: 32px 28px;
-    background: linear-gradient(155deg, var(--dusk), var(--dusk-soft));
-    clip-path: polygon(18px 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%, 0 18px);
-    box-shadow: 0 0 0 1px rgba(139, 92, 224, .12);
-    transition: box-shadow .3s var(--ease-veil), transform .3s var(--ease-veil);
-  }
-  .card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 0 0 1px rgba(139, 92, 224, .35), 0 18px 40px -20px rgba(139, 92, 224, .6);
-  }
+.page-head__title {
+  font-family: var(--font-display-ja);
+  font-size: clamp(1.5rem, 6vw, 2.8rem);
+  color: var(--crystal);
+  letter-spacing: .02em;
+  text-align: center;
+  white-space: nowrap;
+}
 
-  .card__mark {
-    display: inline-block;
-    width: 30px; height: 30px;
-    margin-bottom: 18px;
-    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
-  }
-  .card:nth-child(1) .card__mark { background: linear-gradient(135deg, var(--amethyst), var(--amethyst-soft)); }
-  .card:nth-child(2) .card__mark { background: linear-gradient(135deg, var(--emerald), var(--emerald-soft)); }
-  .card:nth-child(3) .card__mark { background: linear-gradient(135deg, var(--bloom), var(--amethyst-soft)); }
-  .card:nth-child(4) .card__mark { background: linear-gradient(135deg, var(--emerald-soft), var(--bloom)); }
+.page-head__lead {
+  margin: 18px auto 0;
+  max-width: 42em;
+  color: var(--crystal-dim);
+  font-size: .95rem;
+  line-height: 1.9;
+  text-align: center;
+}
 
-  .card h3 {
-    font-family: var(--font-display-ja);
-    font-size: 1.15rem;
-    margin-bottom: 12px;
-  }
-  .card p {
-    font-size: .92rem;
-    color: var(--crystal-dim);
-    line-height: 1.9;
-    margin-bottom: 18px;
-  }
+/* ==========================================================================
+    Policy / legal content
+    ========================================================================== */
+.policy .section-inner { max-width: 760px; }
 
-  /* ==========================================================================
-     Links
-     ========================================================================== */
-  .link-pills { display: flex; gap: 16px; flex-wrap: wrap; }
+.policy h2 {
+  font-family: var(--font-display-ja);
+  font-size: 1.2rem;
+  margin-top: 56px;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(139, 92, 224, .2);
+}
+.policy h2:first-child { margin-top: 0; }
 
-  .pill {
-    padding: 12px 26px;
-    font-size: .9rem;
-    border: 1px solid rgba(139, 92, 224, .35);
-    border-radius: 999px;
-    color: var(--crystal);
-    transition: border-color .2s, background .2s, transform .2s;
-  }
-  .pill:hover {
-    border-color: var(--emerald-soft);
-    background: rgba(95, 224, 184, .08);
-    transform: translateY(-2px);
-  }
+.policy p {
+  color: var(--crystal-dim);
+  font-size: .95rem;
+  line-height: 2;
+  margin-bottom: 16px;
+}
 
-  /* ==========================================================================
-     Page head（サブページ用の落ち着いた見出しエリア／シャイン演出なし）
-     ========================================================================== */
-  .page-head {
-    position: relative;
-    padding: 140px var(--edge) 56px;
-    background:
-      radial-gradient(50% 60% at 20% 0%, rgba(139, 92, 224, .16), transparent 65%),
-      radial-gradient(45% 55% at 90% 10%, rgba(20, 183, 135, .12), transparent 65%),
-      var(--void);
-    border-bottom: 1px solid rgba(139, 92, 224, .15);
-  }
+.policy a {
+  color: var(--emerald-soft);
+  border-bottom: 1px solid rgba(95, 224, 184, .35);
+  transition: color .2s, border-color .2s;
+}
+.policy a:hover { color: var(--crystal); border-color: var(--crystal); }
 
-  .page-head__title {
-    font-family: var(--font-display-ja);
-    font-size: clamp(1.5rem, 6vw, 2.8rem);
-    color: var(--crystal);
-    letter-spacing: .02em;
-    text-align: center;
-    white-space: nowrap;
-  }
+.policy ul {
+  margin: 0 0 16px;
+  padding-left: 1.4em;
+}
+.policy ul li {
+  position: relative;
+  color: var(--crystal-dim);
+  font-size: .95rem;
+  line-height: 1.9;
+  margin-bottom: 8px;
+  list-style: none;
+}
+.policy ul li::before {
+  content: "";
+  position: absolute;
+  left: -1.2em; top: .75em;
+  width: 5px; height: 5px;
+  background: var(--amethyst-soft);
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+}
 
-  .page-head__lead {
-    margin: 18px auto 0;
-    max-width: 42em;
-    color: var(--crystal-dim);
-    font-size: .95rem;
-    line-height: 1.9;
-    text-align: center;
-  }
+.policy__meta {
+  margin-top: 60px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(236, 231, 248, .1);
+  font-size: .85rem;
+  color: var(--crystal-dim);
+}
 
-  /* ==========================================================================
-     Policy / legal content
-     ========================================================================== */
-  .policy .section-inner { max-width: 760px; }
+/* ==========================================================================
+    Project entries（Projectsページ）
+    ========================================================================== */
+.project-list {
+  display: flex;
+  flex-direction: column;
+}
 
-  .policy h2 {
-    font-family: var(--font-display-ja);
-    font-size: 1.2rem;
-    margin-top: 56px;
-    margin-bottom: 16px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid rgba(139, 92, 224, .2);
-  }
-  .policy h2:first-child { margin-top: 0; }
+.project-entry {
+  padding: 44px 0;
+  border-bottom: 1px solid rgba(139, 92, 224, .15);
+}
+.project-entry:first-child { padding-top: 0; }
+.project-entry:last-child { border-bottom: none; }
 
-  .policy p {
-    color: var(--crystal-dim);
-    font-size: .95rem;
-    line-height: 2;
-    margin-bottom: 16px;
-  }
+.project-entry__title {
+  font-family: var(--font-display-ja);
+  font-size: 1.4rem;
+  color: var(--crystal);
+  margin-bottom: 8px;
+}
 
-  .policy a {
-    color: var(--emerald-soft);
-    border-bottom: 1px solid rgba(95, 224, 184, .35);
-    transition: color .2s, border-color .2s;
-  }
-  .policy a:hover { color: var(--crystal); border-color: var(--crystal); }
+.project-entry__tagline {
+  color: var(--amethyst-soft);
+  font-size: .95rem;
+  margin-bottom: 18px;
+}
 
-  .policy ul {
-    margin: 0 0 16px;
-    padding-left: 1.4em;
-  }
-  .policy ul li {
-    position: relative;
-    color: var(--crystal-dim);
-    font-size: .95rem;
-    line-height: 1.9;
-    margin-bottom: 8px;
-    list-style: none;
-  }
-  .policy ul li::before {
-    content: "";
-    position: absolute;
-    left: -1.2em; top: .75em;
-    width: 5px; height: 5px;
-    background: var(--amethyst-soft);
-    clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
-  }
+.project-entry__body {
+  color: var(--crystal-dim);
+  font-size: .95rem;
+  line-height: 2;
+  max-width: 62em;
+  margin-bottom: 20px;
+}
 
-  .policy__meta {
-    margin-top: 60px;
-    padding-top: 24px;
-    border-top: 1px solid rgba(236, 231, 248, .1);
-    font-size: .85rem;
-    color: var(--crystal-dim);
-  }
+.project-entry__tags {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.project-entry__tag {
+  padding: 5px 14px;
+  font-size: .78rem;
+  border: 1px solid rgba(95, 224, 184, .3);
+  color: var(--emerald-soft);
+  border-radius: 999px;
+}
 
-  /* ==========================================================================
-     Project entries（Projectsページ）
-     ========================================================================== */
-  .project-list {
-    display: flex;
-    flex-direction: column;
-  }
+.text-link--muted {
+  color: var(--crystal-dim);
+  border-bottom-color: rgba(169, 159, 196, .25);
+  cursor: default;
+}
+.text-link--muted:hover {
+  color: var(--crystal-dim);
+  border-color: rgba(169, 159, 196, .25);
+}
 
-  .project-entry {
-    padding: 44px 0;
-    border-bottom: 1px solid rgba(139, 92, 224, .15);
-  }
-  .project-entry:first-child { padding-top: 0; }
-  .project-entry:last-child { border-bottom: none; }
+/* ==========================================================================
+    Profile page
+    ========================================================================== */
+.profile-section .section-inner {
+  padding-top: 72px;
+  padding-bottom: 72px;
+  border-top: 1px solid rgba(139, 92, 224, .12);
+}
+.profile-section:first-of-type .section-inner { border-top: none; }
 
-  .project-entry__title {
-    font-family: var(--font-display-ja);
-    font-size: 1.4rem;
-    color: var(--crystal);
-    margin-bottom: 8px;
-  }
+.skill-group { margin-bottom: 40px; }
+.skill-group:last-child { margin-bottom: 0; }
 
-  .project-entry__tagline {
-    color: var(--amethyst-soft);
-    font-size: .95rem;
-    margin-bottom: 18px;
-  }
+.skill-group__title {
+  font-family: var(--font-display-ja);
+  font-size: 1.05rem;
+  color: var(--crystal);
+  margin-bottom: 14px;
+}
 
-  .project-entry__body {
-    color: var(--crystal-dim);
-    font-size: .95rem;
-    line-height: 2;
-    max-width: 62em;
-    margin-bottom: 20px;
-  }
+.skill-tags {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
 
-  .project-entry__tags {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 18px;
-  }
-  .project-entry__tag {
-    padding: 5px 14px;
-    font-size: .78rem;
-    border: 1px solid rgba(95, 224, 184, .3);
-    color: var(--emerald-soft);
-    border-radius: 999px;
-  }
+.tag-pill {
+  padding: 5px 14px;
+  font-size: .78rem;
+  border: 1px solid rgba(95, 224, 184, .3);
+  color: var(--emerald-soft);
+  border-radius: 999px;
+}
 
-  .text-link--muted {
-    color: var(--crystal-dim);
-    border-bottom-color: rgba(169, 159, 196, .25);
-    cursor: default;
-  }
-  .text-link--muted:hover {
-    color: var(--crystal-dim);
-    border-color: rgba(169, 159, 196, .25);
-  }
+.skill-group p {
+  color: var(--crystal-dim);
+  font-size: .95rem;
+  line-height: 1.9;
+  max-width: 46em;
+}
 
-  /* ==========================================================================
-     Profile page
-     ========================================================================== */
-  .profile-section .section-inner {
-    padding-top: 72px;
-    padding-bottom: 72px;
-    border-top: 1px solid rgba(139, 92, 224, .12);
-  }
-  .profile-section:first-of-type .section-inner { border-top: none; }
+/* ==========================================================================
+    Footer
+    ========================================================================== */
+.site-footer {
+  border-top: 1px solid rgba(139, 92, 224, .15);
+  padding: 40px var(--edge) 60px;
+}
 
-  .skill-group { margin-bottom: 40px; }
-  .skill-group:last-child { margin-bottom: 0; }
+.site-footer__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
 
-  .skill-group__title {
-    font-family: var(--font-display-ja);
-    font-size: 1.05rem;
-    color: var(--crystal);
-    margin-bottom: 14px;
-  }
+.site-footer__legal {
+  display: flex;
+  gap: 20px;
+  font-size: .85rem;
+  color: var(--crystal-dim);
+}
+.site-footer__legal a:hover { color: var(--emerald-soft); }
 
-  .skill-tags {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 14px;
-  }
+.site-footer__credit {
+  font-size: .82rem;
+  color: var(--crystal-dim);
+}
 
-  .tag-pill {
-    padding: 5px 14px;
-    font-size: .78rem;
-    border: 1px solid rgba(95, 224, 184, .3);
-    color: var(--emerald-soft);
-    border-radius: 999px;
+/* ==========================================================================
+    Motion preferences
+    ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero, .mote, .hero__title { animation: none !important; }
+  .hero__title { background-position: 0 0; }
+  .hero__char, .hero__cta-btn {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
-
-  .skill-group p {
-    color: var(--crystal-dim);
-    font-size: .95rem;
-    line-height: 1.9;
-    max-width: 46em;
+  .reveal {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
-
-  /* ==========================================================================
-     Footer
-     ========================================================================== */
-  .site-footer {
-    border-top: 1px solid rgba(139, 92, 224, .15);
-    padding: 40px var(--edge) 60px;
-  }
-
-  .site-footer__inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-
-  .site-footer__legal {
-    display: flex;
-    gap: 20px;
-    font-size: .85rem;
-    color: var(--crystal-dim);
-  }
-  .site-footer__legal a:hover { color: var(--emerald-soft); }
-
-  .site-footer__credit {
-    font-size: .82rem;
-    color: var(--crystal-dim);
-  }
-
-  /* ==========================================================================
-     Motion preferences
-     ========================================================================== */
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    .hero, .mote, .hero__title { animation: none !important; }
-    .hero__title { background-position: 0 0; }
-  }
+  .btn__ring polygon { transition: none !important; }
+}

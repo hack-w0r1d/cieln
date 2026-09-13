@@ -71,20 +71,29 @@
   <div class="hero__inner">
     <p class="hero__kicker">Creator / Web Developer</p>
     <h1 class="hero__title">Ciel'N</h1>
-    <p class="hero__tagline">
-      「あったらいいな」を形に。<br>
-      「届けたい」を声に。<br><br>
-      人々に寄り添う作品を、<br>
-      少しずつ創造していきます。
-    </p>
+    <div class="hero__tagline">
+      <p class="hero__tagline-group">
+        <span class="hero__tagline-line">「あったらいいな」を形に。</span>
+        <span class="hero__tagline-line">「届けたい」を声に。</span>
+      </p>
+      <p class="hero__tagline-group">
+        <span class="hero__tagline-line">人々に寄り添う作品を、</span>
+        <span class="hero__tagline-line">少しずつ創造していきます。</span>
+      </p>
+    </div>
     <div class="hero__cta">
       <a class="btn btn--primary" href="projects.html">Projects を見る</a>
-      <a class="btn btn--ghost" href="profile.html">Profile</a>
+      <a class="btn btn--ghost" href="profile.html">
+        <span class="btn__label">Profile</span>
+        <svg class="btn__ring" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <polygon points="8,0 100,0 100,92 92,100 0,100 0,8" />
+        </svg>
+      </a>
     </div>
   </div>
 </section>
 
-<section class="about-teaser">
+<section class="about-teaser reveal">
   <div class="section-inner">
     <h2>個人開発者として</h2>
     <div class="prose">
@@ -97,7 +106,7 @@
   </div>
 </section>
 
-<section class="featured">
+<section class="featured reveal">
   <div class="section-inner">
     <h2>Featured</h2>
     <div class="card-grid">
@@ -129,7 +138,7 @@
   </div>
 </section>
 
-<section class="links">
+<section class="links reveal">
   <div class="section-inner">
     <h2>Links</h2>
     <div class="link-pills">
