@@ -110,7 +110,6 @@ if (taglineEnd !== null) {
     const topThird = screenTop + screenH / 3;
     const bottomThird = screenTop + (screenH * 2) / 3;
     const bottomQuarter = screenTop + screenH * 0.75;
-    const center = screenTop + screenH / 2;
     const screenBottom = window.innerHeight;
 
     // about-teaser（data-vanish）: 上端が下1/3を越えたら表示。
@@ -136,7 +135,9 @@ if (taglineEnd !== null) {
       el.style.setProperty("--proximity", visible ? "1" : "0");
     });
 
-    // card: 上端がheader除く画面の下1/3〜画面中央でスライドイン(フェード)。
+    // card: 上端がheader除く画面の下1/3を越えたらスライドイン(フェード)をトリガー。
+    // スクロール位置に連続追従させず表示/非表示の二値で目標値を切り替えるため、
+    // 一度トリガーしたらスクロールを途中で止めてもCSSのtransitionが最後まで完了する。
     // 行ごとに独立して動く(前の行の完了を待たない)。表示(下スクロール)は行内で左→右、
     // 非表示(上スクロール)は右→左の順に開始するよう、行内の列位置に応じてtransition-delayをずらす
     const scrollingUp = window.scrollY < lastScrollY;
@@ -159,12 +160,10 @@ if (taglineEnd !== null) {
       });
     });
     cardEntries.forEach(({ card, rect }) => {
-      let entryT = (rect.top - center) / (bottomThird - center);
-      entryT = Math.min(Math.max(entryT, 0), 1);
-
+      const shouldReveal = rect.top < bottomThird;
       const dir = card.dataset.slide === "left" ? -1 : 1;
-      card.style.setProperty("--slide-x", `${(dir * entryT * 70).toFixed(1)}%`);
-      card.style.setProperty("--slide-opacity", (1 - entryT).toFixed(3));
+      card.style.setProperty("--slide-x", shouldReveal ? "0%" : `${(dir * 70).toFixed(1)}%`);
+      card.style.setProperty("--slide-opacity", shouldReveal ? "1" : "0");
     });
 
     // Links見出し: 上端がheader除く画面の下1/4ラインを越えたら表示、
@@ -176,11 +175,11 @@ if (taglineEnd !== null) {
       const wasVisible = linksHeading.classList.contains("is-visible");
       linksHeading.classList.toggle("is-visible", visible);
       if (visible && !wasVisible) {
-        // 見出しのtransition(1.1s)完了を待たず、少し早めにpillsを表示開始する
+        // 見出しの表示開始直後にpillsを表示開始する
         clearTimeout(pillRevealTimer);
         pillRevealTimer = setTimeout(() => {
           linksPills.forEach((el) => el.classList.add("is-visible"));
-        }, 850);
+        }, 350);
       }
       if (!visible && wasVisible) {
         clearTimeout(pillRevealTimer);
