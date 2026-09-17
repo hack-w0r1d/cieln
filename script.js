@@ -80,20 +80,27 @@ if (taglineEnd !== null) {
   const proximityEls = Array.from(document.querySelectorAll("[data-proximity]"));
   const slideCards = Array.from(document.querySelectorAll("[data-slide]"));
   const linksHeading = document.querySelector(".links h2");
-  const linksItems = linksHeading
-    ? [linksHeading, ...document.querySelectorAll(".links .pill")]
-    : [];
-  if (!proximityEls.length && !slideCards.length && !linksItems.length) return;
+  const linksPills = Array.from(document.querySelectorAll(".link-pills .pill"));
+  const linksItems = linksHeading ? [linksHeading] : [];
+  if (!proximityEls.length && !slideCards.length && !linksItems.length && !linksPills.length) return;
 
   if (prefersReducedMotion) {
-    proximityEls.forEach((el) => el.style.setProperty("--proximity", "1"));
+    proximityEls.forEach((el) => {
+      el.style.setProperty("--proximity", "1");
+      el.style.setProperty("--vanish", "0");
+    });
     slideCards.forEach((card) => {
       card.style.setProperty("--slide-x", "0%");
       card.style.setProperty("--slide-opacity", "1");
     });
     linksItems.forEach((el) => el.classList.add("is-visible"));
+    linksPills.forEach((el) => el.classList.add("is-visible"));
     return;
   }
+
+  // Links: 「Links」見出しの表示が完了する少し前のタイミングでpillsを表示するタイマー
+  let pillRevealTimer = null;
+  let lastScrollY = window.scrollY;
 
   function update() {
     const navEl = document.querySelector(".nav");
@@ -106,43 +113,79 @@ if (taglineEnd !== null) {
     const center = screenTop + screenH / 2;
     const screenBottom = window.innerHeight;
 
-    // about-teaser / Featured見出し: 自分の上端がheader除く画面の下1/3ラインを越えたら表示、
-    // (参照要素があればその)下端がheader除く画面の上1/3ラインを越えたら非表示
+    // about-teaser（data-vanish）: 上端が下1/3を越えたら表示。
+    // 下端が上1/3(開始)〜screenTop(完了)の間で「儚く消える」効果を別軸で進行
+    // Featured見出し（data-vanishなし）: 上端が下1/3で表示、参照要素の下端が上1/3で非表示（従来どおり）
     proximityEls.forEach((el) => {
+      const ownRect = el.getBoundingClientRect();
+
+      if (el.hasAttribute("data-vanish")) {
+        const visible = ownRect.top < bottomThird;
+        el.style.setProperty("--proximity", visible ? "1" : "0");
+
+        let vanishT = (topThird - ownRect.bottom) / (topThird - screenTop);
+        vanishT = Math.min(Math.max(vanishT, 0), 1);
+        el.style.setProperty("--vanish", vanishT.toFixed(3));
+        return;
+      }
+
       const hideRefSelector = el.dataset.proximityRef;
       const hideRefEl = hideRefSelector ? document.querySelector(hideRefSelector) : el;
-      const ownRect = el.getBoundingClientRect();
       const hideRect = hideRefEl ? hideRefEl.getBoundingClientRect() : ownRect;
       const visible = ownRect.top < bottomThird && hideRect.bottom > topThird;
       el.style.setProperty("--proximity", visible ? "1" : "0");
     });
 
-    slideCards.forEach((card) => {
-      const rect = card.getBoundingClientRect();
-
-      // 進入: 上端がheader除く画面の下1/3〜画面中央の間でオフセット1→0
+    // card: 上端がheader除く画面の下1/3〜画面中央でスライドイン(フェード)。
+    // 行ごとに独立して動く(前の行の完了を待たない)。表示(下スクロール)は行内で左→右、
+    // 非表示(上スクロール)は右→左の順に開始するよう、行内の列位置に応じてtransition-delayをずらす
+    const scrollingUp = window.scrollY < lastScrollY;
+    lastScrollY = window.scrollY;
+    const cardEntries = slideCards.map((card) => ({ card, rect: card.getBoundingClientRect() }));
+    const cardRows = [];
+    cardEntries.forEach((entry) => {
+      const row = cardRows[cardRows.length - 1];
+      if (row && Math.abs(entry.rect.top - row[0].rect.top) < 2) {
+        row.push(entry);
+      } else {
+        cardRows.push([entry]);
+      }
+    });
+    cardRows.forEach((row) => {
+      row.sort((a, b) => a.rect.left - b.rect.left);
+      row.forEach((entry, colIndex) => {
+        const order = scrollingUp ? row.length - 1 - colIndex : colIndex;
+        entry.card.style.transitionDelay = `0s, 0s, ${(order * 0.3).toFixed(2)}s`;
+      });
+    });
+    cardEntries.forEach(({ card, rect }) => {
       let entryT = (rect.top - center) / (bottomThird - center);
       entryT = Math.min(Math.max(entryT, 0), 1);
 
-      // 退出: 下端がheaderを含めた画面最上端(y=0)を越えたら画面外へ
-      const exitTriggered = rect.bottom < 0;
-
-      const t = exitTriggered ? 1 : entryT;
       const dir = card.dataset.slide === "left" ? -1 : 1;
-      card.style.setProperty("--slide-x", `${(dir * t * 70).toFixed(1)}%`);
-      card.style.setProperty("--slide-opacity", (1 - t).toFixed(3));
+      card.style.setProperty("--slide-x", `${(dir * entryT * 70).toFixed(1)}%`);
+      card.style.setProperty("--slide-opacity", (1 - entryT).toFixed(3));
     });
 
-    // Links: 各要素の上端がheader除く画面の下1/4ラインを越えたら表示、
-    // 「Links」見出しの上端が画面下端より下がったら（スクロールし直すたびに再生）非表示
-    if (linksItems.length) {
+    // Links見出し: 上端がheader除く画面の下1/4ラインを越えたら表示、
+    // 上端が画面下端より下がったら（スクロールし直すたびに再生）非表示
+    if (linksHeading) {
       const headingRect = linksHeading.getBoundingClientRect();
       const groupHidden = headingRect.top >= screenBottom;
-      linksItems.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        const visible = !groupHidden && rect.top < bottomQuarter;
-        el.classList.toggle("is-visible", visible);
-      });
+      const visible = !groupHidden && headingRect.top < bottomQuarter;
+      const wasVisible = linksHeading.classList.contains("is-visible");
+      linksHeading.classList.toggle("is-visible", visible);
+      if (visible && !wasVisible) {
+        // 見出しのtransition(1.1s)完了を待たず、少し早めにpillsを表示開始する
+        clearTimeout(pillRevealTimer);
+        pillRevealTimer = setTimeout(() => {
+          linksPills.forEach((el) => el.classList.add("is-visible"));
+        }, 850);
+      }
+      if (!visible && wasVisible) {
+        clearTimeout(pillRevealTimer);
+        linksPills.forEach((el) => el.classList.remove("is-visible"));
+      }
     }
   }
 
