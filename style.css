@@ -98,7 +98,6 @@
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(139, 92, 224, .18);
     transition: opacity 1s var(--ease-veil), transform 1s var(--ease-veil);
-    /* transition: opacity .4s var(--ease-veil), transform .4s var(--ease-veil); */
   }
   .nav.is-hidden {
     opacity: 0;
@@ -304,6 +303,18 @@
   @keyframes btn-rise {
     from { opacity: 0; filter: blur(6px); transform: translateY(6px); }
     to { opacity: 1; filter: blur(0); transform: translateY(0); }
+  }
+
+  /* ページ表示時に1回だけ使う汎用フェードイン(Profile/Projectsのpage-head・メインコンテンツ用)。
+     下からの移動はなく、ぼかしのみで表示する */
+  @keyframes blur-fade {
+    from { opacity: 0; filter: blur(6px); }
+    to { opacity: 1; filter: blur(0); }
+  }
+  .rise-in {
+    opacity: 0;
+    filter: blur(6px);
+    animation: blur-fade 1s var(--ease-veil) forwards;
   }
 
   /* ==========================================================================
@@ -723,7 +734,7 @@
     html { scroll-behavior: auto; }
     .hero, .mote, .hero__title { animation: none !important; }
     .hero__title { background-position: 0 0; }
-    .hero__char, .hero__cta-btn {
+    .hero__char, .hero__cta-btn, .rise-in {
       animation: none !important;
       opacity: 1 !important;
       filter: none !important;

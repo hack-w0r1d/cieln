@@ -75,6 +75,43 @@ if (taglineEnd !== null) {
   animateHeroCTA(taglineEnd + 0.2);
 }
 
+// page-head を持つページ(Profile/Projectsなど): タイトル→リードの順にフェードインし、
+// その後メインコンテンツ(page-head以外のsection)を同時にフェードイン表示する。
+// スクロールとは無関係に、ページ表示時に1回だけ再生する
+(function setupPageIntro() {
+  const title = document.querySelector(".page-head__title");
+  const lead = document.querySelector(".page-head__lead");
+  const pageHead = document.querySelector(".page-head");
+  if (!title || !lead || !pageHead) return;
+
+  const mainSections = Array.from(document.body.children).filter(
+    (el) => el.tagName === "SECTION" && el !== pageHead
+  );
+
+  if (prefersReducedMotion) {
+    title.classList.add("rise-in");
+    lead.classList.add("rise-in");
+    mainSections.forEach((el) => el.classList.add("rise-in"));
+    return;
+  }
+
+  // フェード自体の長さ(1s)はCSSの.rise-inに任せ、ここでは各要素の表示開始タイミングだけを指定する
+  const titleDelay = 0.2;
+  const leadDelay = 0.7;
+  const mainDelay = 1.5;
+
+  title.style.animationDelay = `${titleDelay}s`;
+  title.classList.add("rise-in");
+
+  lead.style.animationDelay = `${leadDelay}s`;
+  lead.classList.add("rise-in");
+
+  mainSections.forEach((el) => {
+    el.style.animationDelay = `${mainDelay}s`;
+    el.classList.add("rise-in");
+  });
+})();
+
 // About teaser / Featured見出し / カード / Links: スクロール位置に連動して表示・スライド
 (function setupScrollProximityEffects() {
   const proximityEls = Array.from(document.querySelectorAll("[data-proximity]"));
