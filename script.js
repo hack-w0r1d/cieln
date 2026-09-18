@@ -82,7 +82,11 @@ if (taglineEnd !== null) {
   const linksHeading = document.querySelector(".links h2");
   const linksPills = Array.from(document.querySelectorAll(".link-pills .pill"));
   const linksItems = linksHeading ? [linksHeading] : [];
-  if (!proximityEls.length && !slideCards.length && !linksItems.length && !linksPills.length) return;
+  const navEl = document.querySelector(".nav");
+  const heroInner = document.querySelector(".hero__inner");
+  const heroSection = document.querySelector(".hero");
+  const hasHeroNavEffect = navEl && heroInner && heroSection;
+  if (!proximityEls.length && !slideCards.length && !linksItems.length && !linksPills.length && !hasHeroNavEffect) return;
 
   if (prefersReducedMotion) {
     proximityEls.forEach((el) => {
@@ -103,7 +107,6 @@ if (taglineEnd !== null) {
   let lastScrollY = window.scrollY;
 
   function update() {
-    const navEl = document.querySelector(".nav");
     const headerH = navEl ? navEl.offsetHeight : 0;
     const screenTop = headerH;
     const screenH = window.innerHeight - headerH;
@@ -111,6 +114,20 @@ if (taglineEnd !== null) {
     const bottomThird = screenTop + (screenH * 2) / 3;
     const bottomQuarter = screenTop + screenH * 0.75;
     const screenBottom = window.innerHeight;
+
+    // header: headerの下端とhero__innerの(スクロール前の)上端とのちょうど中間地点を
+    // hero__innerの上端が通り過ぎたらフェードアウトして非表示にし、
+    // heroセクションを通り過ぎたら(下端がheader下端を越えたら)フェードインして再表示する。
+    // 上スクロールで戻った場合も同じ条件で自動的に表示/非表示が入れ替わる
+    if (hasHeroNavEffect) {
+      const innerRect = heroInner.getBoundingClientRect();
+      const heroRect = heroSection.getBoundingClientRect();
+      // scrollYを足すことでスクロール量に依存しない絶対位置に変換してから中間地点を求める
+      const heroInnerRestTop = innerRect.top + window.scrollY;
+      const hideTriggerY = (headerH + heroInnerRestTop) / 2;
+      const shouldHideNav = innerRect.top <= hideTriggerY && heroRect.bottom > headerH;
+      navEl.classList.toggle("is-hidden", shouldHideNav);
+    }
 
     // about-teaser（data-vanish）: 上端が下1/3を越えたら表示。
     // 下端が上1/3(開始)〜screenTop(完了)の間で「儚く消える」効果を別軸で進行

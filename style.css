@@ -97,6 +97,13 @@
     background: rgba(11, 7, 19, .72);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(139, 92, 224, .18);
+    transition: opacity 1s var(--ease-veil), transform 1s var(--ease-veil);
+    /* transition: opacity .4s var(--ease-veil), transform .4s var(--ease-veil); */
+  }
+  .nav.is-hidden {
+    opacity: 0;
+    transform: translateY(-12px);
+    pointer-events: none;
   }
 
   .nav__inner {
@@ -734,6 +741,11 @@
       transition: none !important;
       opacity: 1 !important;
       filter: none !important;
+      transform: none !important;
+    }
+    .nav {
+      transition: none !important;
+      opacity: 1 !important;
       transform: none !important;
     }
     .btn__ring polygon {
