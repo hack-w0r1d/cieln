@@ -167,23 +167,18 @@
     .nav__main, .nav__ext { display: none; }
     .nav__toggle { display: inline-flex; }
 
-    .nav.is-open .nav__main,
-    .nav.is-open .nav__ext {
+    .nav.is-open .nav__main {
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 14px;
       position: absolute;
       top: 100%; left: 0; right: 0;
-      padding: 24px var(--edge) 28px;
+      padding: 16px var(--edge) 20px;
       background: var(--void-deep);
       border-bottom: 1px solid rgba(139, 92, 224, .18);
     }
-    .nav.is-open .nav__ext {
-      border-left: 0;
-      border-top: 1px solid rgba(236, 231, 248, .12);
-      margin-top: -8px;
-      padding-top: 18px;
-    }
+
+    .nav ~ .hero { padding-top: 140px; }
   }
 
   /* ==========================================================================
@@ -523,7 +518,9 @@
     color: var(--crystal);
     letter-spacing: .02em;
     text-align: center;
-    white-space: nowrap;
+    line-height: 1.5;
+    text-wrap: balance;
+    overflow-wrap: anywhere;
   }
 
   .page-head__lead {
@@ -763,4 +760,24 @@
       transition: none !important;
       stroke-dashoffset: 0 !important;
     }
+  }
+
+  /* ==========================================================================
+     Updates（更新履歴）
+     ========================================================================== */
+  .update-list { list-style: none; padding: 0; max-width: 760px; }
+  .update-item {
+    display: grid;
+    grid-template-columns: 9.5em 1fr;
+    gap: 2px 18px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(139, 92, 224, .18);
+  }
+  .update-item time { grid-row: span 2; font-size: .85rem; color: var(--crystal-dim); }
+  .update-item__tool { font-size: .88rem; color: var(--amethyst-soft); }
+  .update-item__msg { color: var(--crystal); }
+  .update-empty { color: var(--crystal-dim); }
+  @media (max-width: 760px) {
+    .update-item { grid-template-columns: 1fr; }
+    .update-item time { grid-row: auto; }
   }

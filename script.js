@@ -83,6 +83,7 @@ if (taglineEnd !== null) {
   const lead = document.querySelector(".page-head__lead");
   const pageHead = document.querySelector(".page-head");
   if (!title || !lead || !pageHead) return;
+  if (document.body.hasAttribute("data-no-intro")) return;
 
   const mainSections = Array.from(document.body.children).filter(
     (el) => el.tagName === "SECTION" && el !== pageHead

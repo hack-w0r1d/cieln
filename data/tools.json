@@ -1,0 +1,11 @@
+[
+  { "repo": "mirrativ-slamon-info", "name": "スラモン攻略メモ", "url": "https://slamon-info.cieln.com/" },
+  { "repo": "mirrativ-identify-yamikuma", "name": "ヤミクマ襲来", "url": "https://yamikuma.cieln.com/" },
+  { "repo": "mirrativ-tools-hub", "name": "Mirrativで使える便利ツール集", "url": "https://mirrativ-tools.cieln.com/" },
+  { "repo": "livetelop-maker", "name": "LiveTelop Maker", "url": "https://livetelop.cieln.com/" },
+  { "repo": "mirrativ-roulette-calculator", "name": "ルーレットギフト期待値計算ツール", "url": "https://roulette-calc.cieln.com/" },
+  { "repo": "mirrativ-damage-calculator", "name": "ダメージ計算機", "url": "https://dmg-calc.cieln.com/" },
+  { "repo": "mirrativ-reward-calculator", "name": "還元コイン計算ツール", "url": "https://reward-calc.cieln.com/" },
+  { "repo": "mirrativ-surakoro-calculator", "name": "スラコロ専用ギフト期待値計算ツール", "url": "https://slakolo-calc.cieln.com/" },
+  { "repo": "mirrativ-cheer-rank-guide", "name": "チアランク早見表", "url": "https://cheer-rank.cieln.com/" }
+]
