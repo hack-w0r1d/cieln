@@ -2,6 +2,12 @@
   {
     "tool": "スラモン攻略メモ",
     "url": "https://slamon-info.cieln.com/",
+    "message": "タブ切り替え時の表示位置修正",
+    "date": "2026-10-08T04:50:00Z"
+  },
+  {
+    "tool": "スラモン攻略メモ",
+    "url": "https://slamon-info.cieln.com/",
     "message": "育成モンスターと加護Lv.の設定を一元化/まとめをモーダルリンクに/目標加護Lv.必要条件算出ツールの追加",
     "date": "2026-10-07T21:11:32Z"
   },
