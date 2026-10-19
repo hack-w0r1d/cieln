@@ -146,6 +146,8 @@ if (taglineEnd !== null) {
   // Links: 「Links」見出しの表示が完了する少し前のタイミングでpillsを表示するタイマー
   let pillRevealTimer = null;
   let lastScrollY = window.scrollY;
+  // Recent Updates: 全項目が現在表示状態かどうか(初期状態はCSSの非表示に一致)
+  let updatesShown = false;
 
   function update() {
     const headerH = navEl ? navEl.offsetHeight : 0;
@@ -245,22 +247,20 @@ if (taglineEnd !== null) {
       }
     }
 
-    // Recent Updates: 各項目の上端が下1/3ラインを越えたら表示、画面下端より下がったら非表示
-    // (スクロールし直すたびに再生)。同じタイミングで表示される項目は、DOM順(新しい順)に
-    // 0.18秒ずつtransition-delayをずらして、上から流れるように現れる
-    let updateOrder = 0;
-    updateItems.forEach((el) => {
-      const rect = el.getBoundingClientRect();
-      const wasVisible = el.classList.contains("is-visible");
-      if (!wasVisible && rect.top < bottomThird && rect.bottom > screenTop) {
-        el.style.transitionDelay = `${(updateOrder * 0.18).toFixed(2)}s`;
-        updateOrder += 1;
-        el.classList.add("is-visible");
-      } else if (wasVisible && rect.top >= screenBottom) {
-        el.style.transitionDelay = "0s";
-        el.classList.remove("is-visible");
+    // Recent Updates: 先頭(最新)の項目だけを起点に、全項目をまとめて表示/非表示する。
+    // 先頭の上端が下1/3ラインを越えたら全項目を表示、そのラインより下がったら(上スクロール)全項目を非表示。
+    // 各項目はDOM順(新しい順)に0.18秒ずつtransition-delayをずらし、先頭から最後まで順に流れる。
+    // 切り替え後はスクロールを止めてもCSSのtransitionが最後まで進む
+    if (updateItems.length) {
+      const shouldShowUpdates = updateItems[0].getBoundingClientRect().top < bottomThird;
+      if (shouldShowUpdates !== updatesShown) {
+        updatesShown = shouldShowUpdates;
+        updateItems.forEach((el, i) => {
+          el.style.transitionDelay = `${(i * 0.18).toFixed(2)}s`;
+          el.classList.toggle("is-visible", shouldShowUpdates);
+        });
       }
-    });
+    }
   }
 
   let ticking = false;

@@ -665,11 +665,16 @@
      Profile page
      ========================================================================== */
   .profile-section .section-inner {
+    max-width: 760px;
     padding-top: 72px;
     padding-bottom: 72px;
     border-top: 1px solid rgba(139, 92, 224, .12);
   }
-  .profile-section:first-of-type .section-inner { border-top: none; }
+  /* 最初のセクションはpage-headの下線があるため上線を消す
+     (:first-of-typeはpage-head自体がsectionなので、profile-sectionには一致しない) */
+  .page-head + .profile-section .section-inner { border-top: none; }
+  /* 760pxの中央カラムいっぱいに本文を広げる(.proseの38em上限だとカラム内で左に寄る) */
+  .profile-section .prose { max-width: none; }
 
   .skill-group { margin-bottom: 40px; }
   .skill-group:last-child { margin-bottom: 0; }
