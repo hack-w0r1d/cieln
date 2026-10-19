@@ -504,13 +504,24 @@
      ========================================================================== */
   .page-head {
     position: relative;
-    padding: 140px var(--edge) 56px;
+    padding: clamp(56px, 9vw, 88px) var(--edge) clamp(32px, 5vw, 44px);
     background:
       radial-gradient(50% 60% at 20% 0%, rgba(139, 92, 224, .16), transparent 65%),
       radial-gradient(45% 55% at 90% 10%, rgba(20, 183, 135, .12), transparent 65%),
       var(--void);
     border-bottom: 1px solid rgba(139, 92, 224, .15);
   }
+  /* 下端中央に細いグラデーションのアクセントラインを置き、コンパクトでも締まった印象にする */
+  .page-head::after {
+    content: "";
+    position: absolute;
+    left: 50%; bottom: -1px;
+    width: 96px; height: 1px;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, transparent, var(--emerald-soft), transparent);
+  }
+  /* page-head直後のセクションは上余白を詰める(見出し下の余白が二重に積み上がるのを防ぐ) */
+  .page-head + section .section-inner { padding-top: 56px; }
 
   .page-head__title {
     font-family: var(--font-display-ja);
@@ -738,7 +749,8 @@
       transform: none !important;
     }
     .links h2,
-    .link-pills .pill {
+    .link-pills .pill,
+    [data-update-flow] .update-item {
       transition: none !important;
       animation: none !important;
       opacity: 1 !important;
@@ -780,4 +792,17 @@
   @media (max-width: 760px) {
     .update-item { grid-template-columns: 1fr; }
     .update-item time { grid-row: auto; }
+  }
+
+  /* トップのRecent Updates: 新しい順に1件ずつ、雲のようにふわっと表示（スクロールし直すたびに再生） */
+  [data-update-flow] .update-item {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateY(14px);
+    transition: opacity 1.1s var(--ease-veil), filter 1.1s var(--ease-veil), transform 1.1s var(--ease-veil);
+  }
+  [data-update-flow] .update-item.is-visible {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
   }

@@ -120,11 +120,13 @@ if (taglineEnd !== null) {
   const linksHeading = document.querySelector(".links h2");
   const linksPills = Array.from(document.querySelectorAll(".link-pills .pill"));
   const linksItems = linksHeading ? [linksHeading] : [];
+  // Recent Updates: DOM順(=新しい順)に1件ずつ表示する対象
+  const updateItems = Array.from(document.querySelectorAll("[data-update-flow] .update-item"));
   const navEl = document.querySelector(".nav");
   const heroInner = document.querySelector(".hero__inner");
   const heroSection = document.querySelector(".hero");
   const hasHeroNavEffect = navEl && heroInner && heroSection;
-  if (!proximityEls.length && !slideCards.length && !linksItems.length && !linksPills.length && !hasHeroNavEffect) return;
+  if (!proximityEls.length && !slideCards.length && !linksItems.length && !linksPills.length && !updateItems.length && !hasHeroNavEffect) return;
 
   if (prefersReducedMotion) {
     proximityEls.forEach((el) => {
@@ -137,6 +139,7 @@ if (taglineEnd !== null) {
     });
     linksItems.forEach((el) => el.classList.add("is-visible"));
     linksPills.forEach((el) => el.classList.add("is-visible"));
+    updateItems.forEach((el) => el.classList.add("is-visible"));
     return;
   }
 
@@ -241,6 +244,23 @@ if (taglineEnd !== null) {
         linksPills.forEach((el) => el.classList.remove("is-visible"));
       }
     }
+
+    // Recent Updates: 各項目の上端が下1/3ラインを越えたら表示、画面下端より下がったら非表示
+    // (スクロールし直すたびに再生)。同じタイミングで表示される項目は、DOM順(新しい順)に
+    // 0.18秒ずつtransition-delayをずらして、上から流れるように現れる
+    let updateOrder = 0;
+    updateItems.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      const wasVisible = el.classList.contains("is-visible");
+      if (!wasVisible && rect.top < bottomThird && rect.bottom > screenTop) {
+        el.style.transitionDelay = `${(updateOrder * 0.18).toFixed(2)}s`;
+        updateOrder += 1;
+        el.classList.add("is-visible");
+      } else if (wasVisible && rect.top >= screenBottom) {
+        el.style.transitionDelay = "0s";
+        el.classList.remove("is-visible");
+      }
+    });
   }
 
   let ticking = false;
