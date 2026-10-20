@@ -2,7 +2,8 @@ name: Update log
 
 on:
   schedule:
-    - cron: "0 */3 * * *"
+    # 毎日 0:10 JST（UTC 15:10）。毎正時は混み合って遅延しやすいので10分ずらす
+    - cron: "10 15 * * *"
   workflow_dispatch:
 
 permissions:
