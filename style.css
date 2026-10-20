@@ -217,9 +217,11 @@
     background: var(--crystal);
     box-shadow: 0 0 6px 1px var(--crystal);
     opacity: 0;
+    /* driftはalternateで往復させる。片道のままinfiniteにすると、周期の終わりで
+       -40pxから0へ一瞬で戻り、星が見えている時(twinkleと周期が噛み合わない時)に瞬間移動して見える */
     animation:
       twinkle 6s ease-in-out var(--d) infinite,
-      drift 14s ease-in-out var(--d) infinite;
+      drift 14s ease-in-out var(--d) infinite alternate;
   }
 
   @keyframes twinkle {
