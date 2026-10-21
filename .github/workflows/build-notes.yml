@@ -1,0 +1,33 @@
+name: Build notes list
+
+on:
+  push:
+    paths:
+      - "notes/**"
+      - "scripts/build-notes.mjs"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Generate notes list
+        run: node scripts/build-notes.mjs
+      - name: Commit changes
+        run: |
+          if git diff --quiet; then
+            echo "変更なし"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add notes.html notes
+          git commit -m "Update notes list"
+          git pull --rebase
+          git push

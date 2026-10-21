@@ -813,3 +813,53 @@
     filter: blur(0);
     transform: translateY(0);
   }
+
+  /* ==========================================================================
+     Notes（一覧と記事ページ）
+     ========================================================================== */
+  .note-index .section-inner { max-width: 760px; }
+
+  .note-list { list-style: none; padding: 0; }
+  .note-item {
+    display: grid;
+    grid-template-columns: 7.5em 1fr;
+    gap: 2px 18px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(139, 92, 224, .15);
+  }
+  .note-item:first-child { padding-top: 0; }
+  .note-item:last-child { border-bottom: none; }
+  .note-item time {
+    font-size: .85rem;
+    color: var(--crystal-dim);
+    line-height: 2;
+  }
+  .note-item__link {
+    font-family: var(--font-display-ja);
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--crystal);
+    transition: color .2s;
+  }
+  .note-item__link:hover { color: var(--emerald-soft); }
+  @media (max-width: 760px) {
+    .note-item { grid-template-columns: 1fr; }
+  }
+
+  /* 記事内の画像 */
+  .note-figure { margin: 32px 0; }
+  .note-figure img {
+    width: 100%;
+    height: auto;
+    border: 1px solid rgba(139, 92, 224, .2);
+  }
+  .note-figure figcaption {
+    margin-top: 10px;
+    font-size: .85rem;
+    line-height: 1.8;
+    color: var(--crystal-dim);
+    text-align: center;
+  }
+
+  /* 記事末尾の「一覧へ戻る」 */
+  .note-back { margin-top: 28px; }

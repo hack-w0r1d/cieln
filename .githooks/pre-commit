@@ -1,0 +1,9 @@
+#!/bin/sh
+# notes/ か build-notes.mjs を含むコミットのとき、Notes一覧を再生成して同じコミットに含める。
+# これで GitHub Actions 側は「変更なし」になり、自動コミットによる競合が起きにくくなる。
+# 初回のみ設定: git config core.hooksPath .githooks && chmod +x .githooks/pre-commit
+if git diff --cached --name-only | grep -qE '^(notes/|scripts/build-notes\.mjs)'; then
+  node scripts/build-notes.mjs || exit 1
+  git add notes.html
+  git diff --cached --name-only --diff-filter=ACM -- notes | xargs -r git add
+fi
