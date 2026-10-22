@@ -2,6 +2,18 @@
   {
     "tool": "スラモン攻略メモ",
     "url": "https://slamon-info.cieln.com/",
+    "message": "スキル「フニャリズム」更新",
+    "date": "2026-10-22T13:30:30Z"
+  },
+  {
+    "tool": "スラモン攻略メモ",
+    "url": "https://slamon-info.cieln.com/",
+    "message": "検索バーが非表示になる問題を修正/ボスステータスを表形式に変更&並び替えに対応",
+    "date": "2026-10-22T12:40:25Z"
+  },
+  {
+    "tool": "スラモン攻略メモ",
+    "url": "https://slamon-info.cieln.com/",
     "message": "スキル「カチコチン」情報更新",
     "date": "2026-10-20T16:35:40Z"
   },
