@@ -2,6 +2,18 @@
   {
     "tool": "スラモン攻略メモ",
     "url": "https://slamon-info.cieln.com/",
+    "message": "スキル「キビキビン」更新",
+    "date": "2026-10-28T15:45:34Z"
+  },
+  {
+    "tool": "LiveTelop Maker",
+    "url": "https://livetelop.cieln.com/",
+    "message": "iOS27更新でテロップ2周目以降のループが非表示になる不具合を修正",
+    "date": "2026-10-28T10:52:14Z"
+  },
+  {
+    "tool": "スラモン攻略メモ",
+    "url": "https://slamon-info.cieln.com/",
     "message": "スキル「シュビシュビン」更新",
     "date": "2026-10-27T14:16:52Z"
   },
